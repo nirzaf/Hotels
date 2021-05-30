@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Serilog;
@@ -11,12 +10,13 @@ namespace Hotels
     {
         public static void Main(string[] args)
         {
-            string workingDirectory = Environment.CurrentDirectory;
+            var workingDirectory = Environment.CurrentDirectory;
             Log.Logger = new LoggerConfiguration()
-                .WriteTo.File(path: $"{workingDirectory}\\Log\\log.txt",
-                    outputTemplate:"{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level: u3}]{Message:lj}{NewLine}{Exception}",
-                    rollingInterval:RollingInterval.Day,
-                    restrictedToMinimumLevel:LogEventLevel.Information).CreateLogger();
+                .WriteTo.File($"{workingDirectory}\\Log\\log.txt",
+                    outputTemplate:
+                    "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level: u3}]{Message:lj}{NewLine}{Exception}",
+                    rollingInterval: RollingInterval.Day,
+                    restrictedToMinimumLevel: LogEventLevel.Information).CreateLogger();
             CreateHostBuilder(args).Build().Run();
             try
             {
