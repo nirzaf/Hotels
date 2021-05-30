@@ -1,4 +1,5 @@
 using Hotels.Model;
+using Hotels.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -44,6 +45,8 @@ namespace Hotels
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hotels v1"));
             }
 
+            app.ConfigureExceptionHandler();
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();
