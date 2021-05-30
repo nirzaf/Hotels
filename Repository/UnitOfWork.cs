@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Hotels.Data;
 using Hotels.IRepository;
@@ -13,10 +11,12 @@ namespace Hotels.Repository
         private readonly AppDbContext _context;
         private IGenericRepository<Country> _countries;
         private IGenericRepository<Hotel> _hotels;
+
         public UnitOfWork(AppDbContext context)
         {
             _context = context;
         }
+
         public void Dispose()
         {
             _context.Dispose();
